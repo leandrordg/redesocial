@@ -6,6 +6,11 @@ const getPosts = async (orderBy: "asc" | "desc" = "desc") => {
     include: {
       author: true,
       likes: true,
+      comments: {
+        include: {
+          author: true,
+        },
+      },
     },
   });
 };
@@ -16,6 +21,11 @@ const getPostById = async (postId: string) => {
     include: {
       author: true,
       likes: true,
+      comments: {
+        include: {
+          author: true,
+        },
+      },
     },
   });
 };

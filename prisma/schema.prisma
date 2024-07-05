@@ -9,32 +9,45 @@ datasource db {
 }
 
 model User {
-  id        String   @id @default(cuid())
-  userId    String   @unique
+  id        String    @id @default(cuid())
+  userId    String    @unique
   firstName String
   lastName  String
-  username  String   @unique
-  email     String   @unique
-  phone     String?  @unique
+  username  String    @unique
+  email     String    @unique
+  phone     String?   @unique
   imageUrl  String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
   posts     Post[]
   likes     Like[]
+  comments  Comment[]
 }
 
 model Post {
-  id        String   @id @default(cuid())
+  id        String    @id @default(cuid())
   content   String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  author    User     @relation(fields: [authorId], references: [userId], onDelete: Cascade)
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  author    User      @relation(fields: [authorId], references: [userId], onDelete: Cascade)
   authorId  String
   likes     Like[]
+  comments  Comment[]
 }
 
 model Like {
   id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  author    User     @relation(fields: [authorId], references: [userId], onDelete: Cascade)
+  authorId  String
+  post      Post     @relation(fields: [postId], references: [id], onDelete: Cascade)
+  postId    String
+}
+
+model Comment {
+  id        String   @id @default(cuid())
+  content   String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   author    User     @relation(fields: [authorId], references: [userId], onDelete: Cascade)

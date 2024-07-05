@@ -1,10 +1,14 @@
-import { Like, Post, User } from "@prisma/client";
-import { PostCard } from "./post-card";
+import type { Comment, Like, Post, User } from "@prisma/client";
+
+import { PostCard } from "@/components/post-card";
 
 type Props = {
   posts: (Post & {
     author: User;
     likes: Like[];
+    comments: (Comment & {
+      author: User;
+    })[];
   })[];
 };
 
@@ -17,6 +21,7 @@ export function Feed({ posts }: Props) {
           post={post}
           author={post.author}
           likes={post.likes}
+          comments={post.comments}
         />
       ))}
     </section>

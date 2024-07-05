@@ -1,16 +1,20 @@
-import { Like, Post, User } from "@prisma/client";
-import { PostCard } from "./post-card";
+import type { Comment, Like, Post, User } from "@prisma/client";
+
+import { PostCard } from "@/components/post-card";
 
 type Props = {
   post: Post;
   author: User;
   likes: Like[];
+  comments: (Comment & {
+    author: User;
+  })[];
 };
 
-export function SingleFeed({ post, author, likes }: Props) {
+export function SingleFeed({ post, author, likes, comments }: Props) {
   return (
     <section>
-      <PostCard post={post} author={author} likes={likes} />
+      <PostCard post={post} author={author} likes={likes} comments={comments} />
     </section>
   );
 }
