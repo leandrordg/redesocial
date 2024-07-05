@@ -5,6 +5,7 @@ const getPosts = async (orderBy: "asc" | "desc" = "desc") => {
     orderBy: { createdAt: orderBy },
     include: {
       author: true,
+      likes: true,
     },
   });
 };
@@ -14,6 +15,7 @@ const getPostById = async (postId: string) => {
     where: { id: postId },
     include: {
       author: true,
+      likes: true,
     },
   });
 };

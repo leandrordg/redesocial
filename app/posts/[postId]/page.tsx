@@ -17,7 +17,7 @@ export default async function Page({
         Vendo publicação de {post.author.username}
       </h1>
 
-      <SingleFeed post={post} author={post.author} />
+      <SingleFeed post={post} author={post.author} likes={post.likes} />
     </div>
   );
 }
