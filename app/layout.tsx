@@ -4,7 +4,7 @@ import "./globals.css";
 
 import { Header } from "@/components/header";
 import { ClerkProvider } from "@clerk/nextjs";
-import { Toaster } from "@/components/ui/sonner"
+import { Toaster } from "@/components/ui/sonner";
 
 const font = Inter({ subsets: ["latin"] });
 
@@ -21,9 +21,9 @@ export default function RootLayout({
     <ClerkProvider>
       <html lang="pt-BR">
         <body className={`flex flex-col min-h-dvh ${font.className}`}>
+          <Toaster />
           <Header />
           <main className="grow">{children}</main>
-          <Toaster />
         </body>
       </html>
     </ClerkProvider>

@@ -1,14 +1,15 @@
 "use client";
 
+import { redirect } from "next/navigation";
 import { useTransition } from "react";
 
 import { createPost } from "@/app/create-post/actions";
+import { toast } from "sonner";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Loader2Icon } from "lucide-react";
-import { toast } from "sonner";
 
 export function CreatePostForm() {
   const [isPending, startTrantision] = useTransition();
@@ -23,7 +24,7 @@ export function CreatePostForm() {
 
       if (res.success) {
         toast.success(res.success);
-        return;
+        redirect("/");
       }
 
       toast.error(res.error);

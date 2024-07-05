@@ -1,5 +1,8 @@
 "use server";
 
+import { revalidatePath } from "next/cache";
+
+import { prisma } from "@/lib/prisma";
 import { auth } from "@clerk/nextjs/server";
 import { z } from "zod";
 
@@ -14,5 +17,14 @@ export const createPost = async (data: z.infer<typeof formSchema>) => {
 
   const { content } = formSchema.parse(data);
 
-  return { success: `Publicação criada com sucesso: ${content}` };
+  await prisma.post.create({
+    data: {
+      content,
+      authorId: userId,
+    },
+  });
+
+  revalidatePath("/");
+
+  return { success: "Post criado com sucesso!" };
 };
