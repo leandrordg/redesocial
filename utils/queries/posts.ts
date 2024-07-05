@@ -9,4 +9,13 @@ const getPosts = async (orderBy: "asc" | "desc" = "desc") => {
   });
 };
 
-export { getPosts };
+const getPostById = async (postId: string) => {
+  return await prisma.post.findUnique({
+    where: { id: postId },
+    include: {
+      author: true,
+    },
+  });
+};
+
+export { getPosts, getPostById };
