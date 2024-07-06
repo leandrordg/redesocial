@@ -9,6 +9,7 @@ import {
   UserButton,
 } from "@clerk/nextjs";
 import { auth } from "@clerk/nextjs/server";
+import { UserNav } from "./user-nav";
 
 export function Header() {
   const { userId } = auth();
@@ -24,7 +25,7 @@ export function Header() {
         </ClerkLoading>
         <ClerkLoaded>
           <SignedIn>
-            <UserButton />
+            <UserNav />
           </SignedIn>
           <SignedOut>
             <SignInButton mode="modal">Entrar</SignInButton>

@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-import { Comment, User } from "@prisma/client";
+import type { Comment, User } from "@prisma/client";
 import { formatRelative } from "date-fns";
 import { ptBR } from "date-fns/locale";
 

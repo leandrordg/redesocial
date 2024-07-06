@@ -1,14 +1,23 @@
 import Image from "next/image";
 import Link from "next/link";
 
+import {
+  ClerkLoaded,
+  ClerkLoading,
+  SignedIn,
+  SignedOut,
+  SignInButton,
+} from "@clerk/nextjs";
 import { auth } from "@clerk/nextjs/server";
 import type { Comment, Like, Post, User } from "@prisma/client";
-import { formatRelative } from "date-fns";
+import { formatDistance } from "date-fns";
 import { ptBR } from "date-fns/locale";
 
 import { CommentsSheet } from "@/components/comments-sheet";
 import { LikePostButton } from "@/components/like-post-button";
 import { RemovePostButton } from "@/components/remove-post-button";
+import { Button } from "@/components/ui/button";
+import { HeartIcon } from "lucide-react";
 
 type Props = {
   post: Post;
@@ -35,10 +44,10 @@ export function PostCard({ post, author, likes, comments }: Props) {
           loading="lazy"
           className="size-4 rounded-full bg-muted mr-1"
         />
-        <span>{author.username}</span>
+        <Link href={`/accounts/${author.userId}`}>{author.username}</Link>
         <span>•</span>
         <span>
-          {formatRelative(post.createdAt, new Date(), { locale: ptBR })}
+          {formatDistance(post.createdAt, new Date(), { locale: ptBR })}
         </span>
         {isAuthor && (
           <div className="ml-auto">
@@ -50,7 +59,21 @@ export function PostCard({ post, author, likes, comments }: Props) {
         <p>{post.content}</p>
       </Link>
       <div className="flex items-center gap-2">
-        <LikePostButton postId={post.id} likes={likes} />
+        <ClerkLoading>
+          <div className="size-6 rounded-md bg-muted animate-pulse" />
+        </ClerkLoading>
+        <ClerkLoaded>
+          <SignedOut>
+            <SignInButton mode="modal">
+              <Button variant="outline" size="icon" className="size-6">
+                <HeartIcon className="size-3" />
+              </Button>
+            </SignInButton>
+          </SignedOut>
+          <SignedIn>
+            <LikePostButton postId={post.id} likes={likes} />
+          </SignedIn>
+        </ClerkLoaded>
         <span className="text-sm text-muted-foreground">
           {likes.length === 1 ? "1 curtida" : `${likes.length} curtidas`}
         </span>

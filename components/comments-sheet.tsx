@@ -1,4 +1,4 @@
-import { Comment, User } from "@prisma/client";
+import type { Comment, User } from "@prisma/client";
 
 import { CommentFeed } from "@/components/comment-feed";
 import { CreateCommentForm } from "@/components/create-comment-form";
