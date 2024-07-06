@@ -39,7 +39,7 @@ export function AccountsHeader({ user }: Props) {
           <h1 className="text-lg font-medium">{user.username}</h1>
           <span className="text-muted-foreground text-sm">
             Entrou{" "}
-            {formatRelative(new Date(), user.createdAt, { locale: ptBR })}
+            {formatRelative(user.createdAt, new Date(), { locale: ptBR })}
           </span>
         </div>
       </div>

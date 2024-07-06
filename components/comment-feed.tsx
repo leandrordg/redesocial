@@ -3,6 +3,7 @@ import Image from "next/image";
 import type { Comment, User } from "@prisma/client";
 import { formatRelative } from "date-fns";
 import { ptBR } from "date-fns/locale";
+import Link from "next/link";
 
 type Props = {
   comments: (Comment & {
@@ -27,7 +28,9 @@ export function CommentFeed({ comments }: Props) {
               loading="lazy"
               className="size-4 rounded-full bg-muted mr-1"
             />
-            <span>{comment.author.username}</span>
+            <Link href={`/accounts/${comment.author.userId}`}>
+              {comment.author.username}
+            </Link>
             <span>•</span>
             <span>
               {formatRelative(comment.createdAt, new Date(), { locale: ptBR })}
