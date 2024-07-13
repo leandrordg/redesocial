@@ -24,7 +24,7 @@ export function AccountsHeader({ user }: Props) {
   const isOwner = userId === user.userId;
 
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-4 p-6 lg:p-10">
       {/* User Info */}
       <div className="flex items-center gap-4">
         <Image

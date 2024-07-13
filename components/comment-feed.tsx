@@ -17,22 +17,22 @@ export function CommentFeed({ comments }: Props) {
       {comments.map((comment) => (
         <div
           key={comment.id}
-          className="px-6 py-3 hover:bg-muted flex flex-col gap-1"
+          className="px-6 lg:px-10 py-3 hover:bg-muted flex flex-col gap-1"
         >
-          <div className="flex items-center gap-1 text-sm">
+          <div className="flex items-center gap-1">
             <Image
               src={comment.author.imageUrl}
               alt={comment.author.username}
               width={64}
               height={64}
               loading="lazy"
-              className="size-4 rounded-full bg-muted mr-1"
+              className="size-5 lg:size-6 rounded-full bg-muted mr-1"
             />
-            <Link href={`/accounts/${comment.author.userId}`}>
+            <Link href={`/accounts/${comment.author.userId}`} className="text-sm lg:text-base">
               {comment.author.username}
             </Link>
-            <span className="text-muted-foreground">•</span>
-            <span className="text-muted-foreground">
+            <span className="text-sm text-muted-foreground">•</span>
+            <span className="text-sm text-muted-foreground">
               {formatDistance(comment.createdAt, new Date(), {
                 locale: ptBR,
                 addSuffix: true,

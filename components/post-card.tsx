@@ -34,7 +34,7 @@ export function PostCard({ post, author, likes, comments }: Props) {
   const isAuthor = userId === author.userId;
 
   return (
-    <article className="border rounded-md p-4 shadow-sm hover:bg-muted/20 flex flex-col gap-2">
+    <article className="p-6 lg:px-10 shadow-sm hover:bg-muted/50 flex flex-col gap-2">
       <div className="flex items-center gap-1 text-muted-foreground text-sm">
         <Image
           src={author.imageUrl}

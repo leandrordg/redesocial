@@ -20,7 +20,9 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html lang="pt-BR">
-        <body className={`flex flex-col min-h-dvh ${font.className}`}>
+        <body
+          className={`flex flex-col min-h-dvh touch-none ${font.className}`}
+        >
           <Toaster />
           <Header />
           <main className="grow">{children}</main>

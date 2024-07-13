@@ -13,7 +13,7 @@ export default async function Page({
   if (!user) return notFound();
 
   return (
-    <div className="p-6 lg:p-10 max-w-screen-lg mx-auto space-y-6">
+    <div className="max-w-screen-lg mx-auto">
       <AccountsHeader user={user} />
 
       <Feed posts={user.posts} />
