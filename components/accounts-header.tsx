@@ -32,7 +32,7 @@ export function AccountsHeader({ user }: Props) {
           alt={user.username!}
           width={256}
           height={256}
-          className="size-20 sm:size-24 md:size-32 rounded-full bg-muted"
+          className="size-20 sm:size-24 rounded-full bg-muted"
         />
 
         <div>

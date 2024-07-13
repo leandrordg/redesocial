@@ -1,9 +1,9 @@
 import Image from "next/image";
+import Link from "next/link";
 
 import type { Comment, User } from "@prisma/client";
-import { formatRelative } from "date-fns";
+import { formatDistance } from "date-fns";
 import { ptBR } from "date-fns/locale";
-import Link from "next/link";
 
 type Props = {
   comments: (Comment & {
@@ -13,13 +13,13 @@ type Props = {
 
 export function CommentFeed({ comments }: Props) {
   return (
-    <section className="flex flex-col gap-4 py-2">
+    <section className="flex flex-col gap-1">
       {comments.map((comment) => (
         <div
           key={comment.id}
-          className="border rounded-md p-4 shadow-sm hover:bg-muted/20 flex flex-col gap-2"
+          className="px-6 py-3 hover:bg-muted flex flex-col gap-1"
         >
-          <div className="flex items-center gap-1 text-muted-foreground text-sm">
+          <div className="flex items-center gap-1 text-sm">
             <Image
               src={comment.author.imageUrl}
               alt={comment.author.username}
@@ -31,9 +31,12 @@ export function CommentFeed({ comments }: Props) {
             <Link href={`/accounts/${comment.author.userId}`}>
               {comment.author.username}
             </Link>
-            <span>•</span>
-            <span>
-              {formatRelative(comment.createdAt, new Date(), { locale: ptBR })}
+            <span className="text-muted-foreground">•</span>
+            <span className="text-muted-foreground">
+              {formatDistance(comment.createdAt, new Date(), {
+                locale: ptBR,
+                addSuffix: true,
+              })}
             </span>
           </div>
           <p>{comment.content}</p>

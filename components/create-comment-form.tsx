@@ -7,6 +7,7 @@ import { toast } from "sonner";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { SignedIn, SignedOut } from "@clerk/nextjs";
 import { Loader2Icon, SendIcon } from "lucide-react";
 
 type Props = {
@@ -40,13 +41,20 @@ export function CreateCommentForm({ postId }: Props) {
         placeholder="Comentar na publicação..."
         disabled={isPending}
       />
-      <Button disabled={isPending}>
-        {!isPending ? (
+      <SignedOut>
+        <Button disabled>
           <SendIcon className="size-4" />
-        ) : (
-          <Loader2Icon className="size-4 animate-spin" />
-        )}
-      </Button>
+        </Button>
+      </SignedOut>
+      <SignedIn>
+        <Button disabled={isPending}>
+          {!isPending ? (
+            <SendIcon className="size-4" />
+          ) : (
+            <Loader2Icon className="size-4 animate-spin" />
+          )}
+        </Button>
+      </SignedIn>
     </form>
   );
 }

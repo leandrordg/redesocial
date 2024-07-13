@@ -1,9 +1,8 @@
 "use client";
 
-import { redirect } from "next/navigation";
 import { useTransition } from "react";
 
-import { createPost } from "@/app/create-post/actions";
+import { createPost } from "@/_actions/create-post";
 import { toast } from "sonner";
 
 import { Button } from "@/components/ui/button";
@@ -11,7 +10,11 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Loader2Icon } from "lucide-react";
 
-export function CreatePostForm() {
+type Props = {
+  closeDrawer: React.Dispatch<React.SetStateAction<boolean>>;
+};
+
+export function CreatePostForm({ closeDrawer }: Props) {
   const [isPending, startTrantision] = useTransition();
 
   const handleSubmit = (formData: FormData) => {
@@ -24,7 +27,8 @@ export function CreatePostForm() {
 
       if (res.success) {
         toast.success(res.success);
-        redirect("/");
+        closeDrawer(false);
+        return;
       }
 
       toast.error(res.error);

@@ -7,10 +7,16 @@ const getUserById = async (id: string) => {
     },
     include: {
       posts: {
+        orderBy: {
+          createdAt: "desc",
+        },
         include: {
           author: true,
           likes: true,
           comments: {
+            orderBy: {
+              createdAt: "desc",
+            },
             include: {
               author: true,
             },
@@ -19,6 +25,9 @@ const getUserById = async (id: string) => {
       },
       likes: true,
       comments: {
+        orderBy: {
+          createdAt: "desc",
+        },
         include: {
           author: true,
         },

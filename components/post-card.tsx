@@ -13,7 +13,7 @@ import type { Comment, Like, Post, User } from "@prisma/client";
 import { formatDistance } from "date-fns";
 import { ptBR } from "date-fns/locale";
 
-import { CommentsSheet } from "@/components/comments-sheet";
+import { CommentsDrawer } from "@/components/comments-drawer";
 import { LikePostButton } from "@/components/like-post-button";
 import { RemovePostButton } from "@/components/remove-post-button";
 import { Button } from "@/components/ui/button";
@@ -42,12 +42,15 @@ export function PostCard({ post, author, likes, comments }: Props) {
           width={64}
           height={64}
           loading="lazy"
-          className="size-4 rounded-full bg-muted mr-1"
+          className="size-5 rounded-full bg-muted mr-1"
         />
         <Link href={`/accounts/${author.userId}`}>{author.username}</Link>
         <span>•</span>
         <span>
-          {formatDistance(post.createdAt, new Date(), { locale: ptBR })}
+          {formatDistance(post.createdAt, new Date(), {
+            locale: ptBR,
+            addSuffix: true,
+          })}
         </span>
         {isAuthor && (
           <div className="ml-auto">
@@ -77,7 +80,7 @@ export function PostCard({ post, author, likes, comments }: Props) {
         <span className="text-sm text-muted-foreground">
           {likes.length === 1 ? "1 curtida" : `${likes.length} curtidas`}
         </span>
-        <CommentsSheet postId={post.id} comments={comments} />
+        <CommentsDrawer postId={post.id} comments={comments} />
       </div>
     </article>
   );

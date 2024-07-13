@@ -11,6 +11,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { UserNav } from "@/components/user-nav";
 import { CopyPlusIcon } from "lucide-react";
+import { CreatePostDrawer } from "./create-post-drawer";
 
 export function Header() {
   return (
@@ -24,11 +25,7 @@ export function Header() {
         </ClerkLoading>
         <ClerkLoaded>
           <SignedIn>
-            <Link href="/create-post">
-              <Button variant="ghost" size="icon">
-                <CopyPlusIcon className="size-4" />
-              </Button>
-            </Link>
+            <CreatePostDrawer />
             <UserNav />
           </SignedIn>
           <SignedOut>
