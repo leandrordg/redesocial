@@ -27,21 +27,14 @@ export function CommentsDrawer({ postId, comments }: Props) {
           ? "1 comentário"
           : `${comments.length} comentários`}
       </DrawerTrigger>
-      <DrawerContent className="flex flex-col h-[90%] gap-4">
+      <DrawerContent className="flex flex-col h-[90%] gap-6">
         <DrawerHeader>
           <DrawerTitle>Comentários ({comments.length})</DrawerTitle>
-          <DrawerDescription>
-            {comments.length === 0
-              ? "Ninguém comentou ainda. Seja o primeiro!"
-              : "Veja o que as pessoas estão falando sobre esse post."}
-          </DrawerDescription>
         </DrawerHeader>
 
-        {comments.length > 0 && (
-          <div className="grow overflow-y-auto">
-            <CommentFeed comments={comments} />
-          </div>
-        )}
+        <div className="grow overflow-y-auto">
+          <CommentFeed comments={comments} />
+        </div>
 
         <DrawerFooter>
           <CreateCommentForm postId={postId} />

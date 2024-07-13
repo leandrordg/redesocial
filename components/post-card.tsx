@@ -34,8 +34,8 @@ export function PostCard({ post, author, likes, comments }: Props) {
   const isAuthor = userId === author.userId;
 
   return (
-    <article className="p-6 lg:px-10 shadow-sm hover:bg-muted/50 flex flex-col gap-2">
-      <div className="flex items-center gap-1 text-muted-foreground text-sm">
+    <article className="p-6 lg:px-10 rounded-md shadow-sm hover:bg-muted/20 flex flex-col gap-2">
+      <div className="flex items-center gap-1">
         <Image
           src={author.imageUrl}
           alt={author.username}
@@ -44,23 +44,30 @@ export function PostCard({ post, author, likes, comments }: Props) {
           loading="lazy"
           className="size-5 rounded-full bg-muted mr-1"
         />
-        <Link href={`/accounts/${author.userId}`}>{author.username}</Link>
-        <span>•</span>
-        <span>
-          {formatDistance(post.createdAt, new Date(), {
-            locale: ptBR,
-            addSuffix: true,
-          })}
-        </span>
+
+        <div className="flex items-baseline gap-1">
+          <Link href={`/accounts/${author.userId}`}>{author.username}</Link>
+
+          <span className="text-muted-foreground text-xs">
+            •{" "}
+            {formatDistance(post.createdAt, new Date(), {
+              locale: ptBR,
+              addSuffix: true,
+            })}
+          </span>
+        </div>
+
         {isAuthor && (
           <div className="ml-auto">
             <RemovePostButton postId={post.id} />
           </div>
         )}
       </div>
+
       <Link href={`/posts/${post.id}`}>
         <p>{post.content}</p>
       </Link>
+
       <div className="flex items-center gap-2">
         <ClerkLoading>
           <div className="size-6 rounded-md bg-muted animate-pulse" />

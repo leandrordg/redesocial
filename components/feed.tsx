@@ -14,7 +14,7 @@ type Props = {
 
 export function Feed({ posts }: Props) {
   return (
-    <section className="grid grid-cols-1 divide-y">
+    <section className="grid grid-cols-1 gap-2">
       {posts.map((post) => (
         <PostCard
           key={post.id}

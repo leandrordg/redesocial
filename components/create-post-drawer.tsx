@@ -25,12 +25,9 @@ export function CreatePostDrawer() {
           <CopyPlusIcon className="size-4" />
         </Button>
       </DrawerTrigger>
-      <DrawerContent>
+      <DrawerContent className="flex flex-col gap-6">
         <DrawerHeader>
           <DrawerTitle>Adicionar uma publicação</DrawerTitle>
-          <DrawerDescription>
-            Adicione uma publicação para compartilhar com a comunidade.
-          </DrawerDescription>
         </DrawerHeader>
 
         <div className="p-4">

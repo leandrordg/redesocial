@@ -12,8 +12,8 @@ export default async function Page({
   if (!post) return notFound();
 
   return (
-    <div className="max-w-screen-lg mx-auto">
-      <div className="p-6 lg:px-10">
+    <div className="max-w-screen-lg mx-auto space-y-6">
+      <div className="px-6 lg:px-10">
         <h1 className="text-lg font-medium">
           Vendo publicação de {post.author.username}
         </h1>

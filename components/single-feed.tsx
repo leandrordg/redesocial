@@ -13,8 +13,6 @@ type Props = {
 
 export function SingleFeed({ post, author, likes, comments }: Props) {
   return (
-    <section>
-      <PostCard post={post} author={author} likes={likes} comments={comments} />
-    </section>
+    <PostCard post={post} author={author} likes={likes} comments={comments} />
   );
 }
