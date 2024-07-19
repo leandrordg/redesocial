@@ -33,13 +33,6 @@ export function CreatePostDrawer() {
         <div className="p-4">
           <CreatePostForm closeDrawer={setIsOpen} />
         </div>
-
-        <DrawerFooter>
-          <DrawerDescription>
-            Após adicionar uma publicação, ela será visível para todos os
-            usuários.
-          </DrawerDescription>
-        </DrawerFooter>
       </DrawerContent>
     </Drawer>
   );

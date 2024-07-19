@@ -8,7 +8,13 @@ import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Loader2Icon } from "lucide-react";
+import { Switch } from "@/components/ui/switch";
+import {
+  EarthIcon,
+  ImageIcon,
+  Loader2Icon,
+  UsersRoundIcon,
+} from "lucide-react";
 
 type Props = {
   closeDrawer: React.Dispatch<React.SetStateAction<boolean>>;
@@ -45,6 +51,21 @@ export function CreatePostForm({ closeDrawer }: Props) {
         placeholder="O que você está pensando?"
         disabled={isPending}
       />
+
+      <div className="flex items-center gap-2">
+        <Button type="button" size="sm" variant="ghost" className="w-fit">
+          <ImageIcon className="size-4 mr-2" />
+          Imagens/vídeos
+        </Button>
+
+        <div className="flex items-center gap-2 text-xs font-medium">
+          <EarthIcon className="size-4" />
+          <span>Todos</span>
+          <Switch />
+          <UsersRoundIcon className="size-4" />
+          <span>Somente seguidores</span>
+        </div>
+      </div>
 
       <Button disabled={isPending}>
         {isPending ? (
